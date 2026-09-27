@@ -12,7 +12,7 @@
 
 #define MAX_SECRET_BUF_SIZE 1
 #define MAX_IMAGE_BUF_SIZE (MAX_SECRET_BUF_SIZE * 8)
-#define MAX_FILE_SUFFIX 4
+#define MAX_FILE_SUFFIX 5
 
 typedef struct _EncodeInfo
 {
@@ -20,8 +20,8 @@ typedef struct _EncodeInfo
     char *src_image_fname;
     FILE *fptr_src_image;
     uint image_capacity;
-    //uint bits_per_pixel;
-    //char image_data[MAX_IMAGE_BUF_SIZE];
+    // uint bits_per_pixel;
+    // char image_data[MAX_IMAGE_BUF_SIZE];
 
     /* Secret File Info */
     char *secret_fname;
@@ -66,20 +66,20 @@ Status copy_bmp_header(FILE *fptr_src_image, FILE *fptr_dest_image);
 /* Store Magic String */
 Status encode_magic_string(const char *magic_string, EncodeInfo *encInfo);
 
-/* Encode secret file extenstion size*/
+//Encode secret file extenstion size
 Status encode_secret_file_extn_size(EncodeInfo *encInfo);
 
 /* Encode secret file extenstion */
 Status encode_secret_file_extn(const char *file_extn, EncodeInfo *encInfo);
 
 /* Encode secret file size */
-Status encode_secret_file_size(int file_size, EncodeInfo *encInfo);
+Status encode_secret_file_size(long file_size, EncodeInfo *encInfo);
 
 /* Encode secret file data*/
 Status encode_secret_file_data(EncodeInfo *encInfo);
 
 /* Encode function, which does the real encoding */
-Status encode_size_to_lsb(int size, char *image_buffer);
+Status encode_size_to_lsb(int size,char *image_buffer);
 
 /* Encode a byte into LSB of image data array */
 Status encode_byte_to_lsb(char data, char *image_buffer);
